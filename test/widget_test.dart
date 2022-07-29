@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+// ignore: unused_import
 import 'package:first_demo_apk/main.dart';
 
 void main() {
