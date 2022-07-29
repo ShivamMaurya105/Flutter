@@ -1,9 +1,16 @@
 import 'package:first_demo_apk/utils/routes.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String name = "";
+  bool changeButton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -22,10 +29,10 @@ class LoginPage extends StatelessWidget {
                   child: Text("Hello"),
                 ),*/
                 Text(
-                  "Login",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  "Welcome $name",
+                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 Padding(
@@ -34,24 +41,61 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             hintText: "Enter Username", labelText: "Username"),
+                        onChanged: (value) {
+                          name = value;
+                          setState(() {});
+                        },
                       ),
                       TextFormField(
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             hintText: "Enter Password", labelText: "Password"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40.0,
                       ),
-                      ElevatedButton(
-                        child: Text("Login"),
-                        style: TextButton.styleFrom(minimumSize: Size(120, 50)),
-                        onPressed: () {
-                          Navigator.pushNamed(context, MyRoutes.homeRoute);
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            changeButton = true;
+                          });
+                          //Navigator.pushNamed(context, MyRoutes.homeRoute);
                         },
+                        child: AnimatedContainer(
+                          duration: const Duration(seconds: 1),
+                          width: changeButton ? 60 : 100,
+                          height: 50,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Colors.purple,
+                              //shape: changeButton
+                              // ? BoxShape.circle
+                              //   : BoxShape.rectangle,
+                              borderRadius:
+                                  BorderRadius.circular(changeButton ? 20 : 8)),
+                          child: changeButton
+                              ? const Icon(
+                                  Icons.done,
+                                  color: Colors.white,
+                                )
+                              : const Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                        ),
                       )
+                      // ElevatedButton(
+                      //   child: Text("Login"),
+                      //   style: TextButton.styleFrom(minimumSize: Size(120, 50)),
+                      //   onPressed: () {
+                      //     Navigator.pushNamed(context, MyRoutes.homeRoute);
+                      //   },
+                      // )
                     ],
                   ),
                 )
