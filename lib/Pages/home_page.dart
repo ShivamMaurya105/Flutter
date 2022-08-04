@@ -11,7 +11,7 @@ class Homepage extends StatelessWidget {
     const String name = "Maurya";
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Catalog App"),
+        title: const Text("Login Page"),
       ),
       body: Center(
         child: Container(
@@ -20,7 +20,5 @@ class Homepage extends StatelessWidget {
       ),
       drawer: MyDrawer(),
     );
-    
   }
 }
-
