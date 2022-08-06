@@ -41,17 +41,47 @@ class _HomepageState extends State<Homepage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: (CatalogModel.items!=null&&CatalogModel.items.isNotEmpty)? ListView.builder(
-          itemCount: CatalogModel.items.length,
-          itemBuilder: ((context, index) {
-            return ItemWidget(
-              item: CatalogModel.items[index],
-            );
-          }),
-        )
-        :const Center(
-          child: CircularProgressIndicator(),
-        ),
+        child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+            ? GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemBuilder: ((context, index) {
+                  final item = CatalogModel.items[index];
+                  return Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: GridTile(
+                        header: Container(
+                          child: Text(
+                            item.name,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.purple,
+                          ),
+                        ),
+                        child: Image.network(item.image),
+                        footer: Container(
+                          child: Text(
+                            item.price.toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ));
+                }),
+                itemCount: CatalogModel.items.length,
+              )
+            : const Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
       drawer: const MyDrawer(),
     );
