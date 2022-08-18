@@ -1,9 +1,8 @@
-import 'package:first_demo_apk/Pages/cart_page.dart';
+
 import 'package:first_demo_apk/models/catolog.dart';
 import 'package:first_demo_apk/utils/routes.dart';
 import 'package:first_demo_apk/widgets/home_widgets/catalog_header.dart';
 import 'package:first_demo_apk/widgets/home_widgets/catalog_list.dart';
-import 'package:first_demo_apk/widgets/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
